@@ -1,9 +1,58 @@
+import { removeToken, setToken, getToken, setTime } from '@/utils/auth.js'
+import { login, getUserInfo, getUserDetailById } from '@/api/user'
+import { resetRouter } from '@/router/index'
+const state = {
+  token: getToken(),
+  userInfo: {}
+}
+const mutations = {
+  setNewToken(state, token) {
+    state.token = token
+    if (token) {
+      // console.log(token)
+      setToken(token)
+    } else {
+      removeToken()
+    }
+  },
+  setUserInfo(state, payload) {
+    state.userInfo = { ...payload }
+  }
+}
+const actions = {
+  async userLogin({ commit }, data) {
+    try {
+      const token = await login(data)
+      // console.log(token)
+      commit('setNewToken', token)
+      console.log(token)
+      setTime()
+      return true
+    } catch (error) {
+      commit('setNewToken', null)
+      console.log(error)
+
+      return false
+    }
+  },
+  async asyncgetUserInfo({ commit }) {
+    const data = await getUserInfo()
+    const res = await getUserDetailById(data.userId)
+    commit('setUserInfo', { ...data, ...res })
+  },
+  async logout({ commit }) {
+    commit('setNewToken', null)
+    commit('setUserInfo', {})
+    resetRouter()
+    commit('permission/setRoutes', [], { root: true }) // 添加第三个参数可以实现子模块与子模块通信
+  }
+}
 
 export default {
   namespaced: true,
-  state: {},
-  mutations: {},
-  actions: {}
+  state,
+  mutations,
+  actions
 }
 
 // import { login, logout, getInfo } from '@/api/user'

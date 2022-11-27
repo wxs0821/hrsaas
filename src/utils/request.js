@@ -1,16 +1,52 @@
 
 import axios from 'axios'
+import { Message } from 'element-ui'
+import store from '@/store'
+import { getTime } from '@/utils/auth'
+import router from '@/router'
 const service = axios.create({
-  baseURL: process.env.VUE_BASE_API,
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 5000
 })
-service.interceptors.request.use(config => {
+service.interceptors.request.use(async config => {
+  const token = store.getters.token
+  if (token) {
+    if (isTimeout()) {
+      await store.dispatch('user/logout')
+      router.push('/login')
+      return Promise.reject(new Error('登录身份过期，请重新登录'))
+    }
+    config.headers['Authorization'] = `Bearer ${token}`
+  }
   return config
+}, error => {
+  return Promise.reject(error)
 })
 service.interceptors.response.use(res => {
-  const { data } = res
-  return data
-})
+  const { data, success, message } = res.data
+  if (success) {
+    return data
+  } else {
+    Message.error(message)
+    return Promise.reject(new Error(message))
+  }
+}, async error => {
+  if (error?.response?.data?.code === 10002) {
+    await store.dispatch('user/logout')
+    router.push('/login')
+  } else {
+    Message.error(error.message)
+  }
+  return Promise.reject(error)
+}
+)
+const expirsTime = 60 * 60 * 1000 * 8
+// const expirsTime = 3 * 1000
+function isTimeout() {
+  const prevTime = getTime()
+  const currTime = Date.now()
+  return currTime - prevTime > expirsTime
+}
 export default service
 // import axios from 'axios'
 // import { MessageBox, Message } from 'element-ui'
