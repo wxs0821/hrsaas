@@ -290,7 +290,7 @@
 
 </template>
 <script>
-import { getPersonalDetail, updatePersonal, saveUserDetailById } from '@/api/employee'
+import { getPersonalDetail, updatePersonal, saveUserDetailById } from '@/api/employees'
 import { getUserDetailById } from '@/api/user'
 
 import EmployeeEnum from '@/api/constant/employees'

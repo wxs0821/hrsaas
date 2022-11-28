@@ -165,7 +165,7 @@
 
 </template>
 <script>
-import { getEmployeeSimple, updateJob, getJobDetail } from '@/api/employee'
+import { getEmployeeSimple, updateJob, getJobDetail } from '@/api/employees'
 
 import EmployeeEnum from '@/api/constant/employees'
 

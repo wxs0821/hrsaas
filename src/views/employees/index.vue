@@ -70,7 +70,7 @@
 </template>
 
 <script>
-import { getEmployeeList, delEmployee } from '@/api/employee'
+import { getEmployeeList, delEmployee } from '@/api/employees'
 import employee from '@/api/constant/employees'
 import defaultImg from '@/assets/common/bigUserHeader.png'
 import EmployeeDialog from './compontents/employee-dialog.vue'

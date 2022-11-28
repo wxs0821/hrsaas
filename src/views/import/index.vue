@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { importEmployee } from '@/api/employee'
+import { importEmployee } from '@/api/employees'
 export default {
   data() {
     return {

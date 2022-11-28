@@ -12,6 +12,9 @@
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <!-- <img src="@/assets/common/bigUserHeader.png" class="user-avatar"> -->
+          <ScreenFull />
+          <!-- 放置全屏插件 -->
+    <ThemePicker class="right-menu-item" />
           <img v-imgerror="defaultImg" :src="staffPhoto" class="user-avatar">
           <span class="name">{{ name }}</span>
           <i class="el-icon-caret-bottom" />
@@ -172,6 +175,9 @@ export default {
         }
       }
     }
+  }
+  .ThemePicker{
+    margin: 20px;
   }
 }
 </style>

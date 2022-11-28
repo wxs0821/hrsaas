@@ -47,7 +47,7 @@
 import HireType from '@/api/constant/employees'
 import { list2tree } from '@/utils/index'
 import { getDepartments } from '@/api/departments'
-import { addEmployee } from '@/api/employee'
+import { addEmployee } from '@/api/employees'
 
 export default {
   name: 'EmployeeDialog',
