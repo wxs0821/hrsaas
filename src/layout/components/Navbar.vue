@@ -9,12 +9,14 @@
     <!-- <breadcrumb class="breadcrumb-container" /> -->
 
     <div class="right-menu">
+      <Lang class="right-menu-item" />
+      <ScreenFull class="right-menu-item" />
+      <!-- 放置全屏插件 -->
+      <ThemePicker class="right-menu-item" />
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <!-- <img src="@/assets/common/bigUserHeader.png" class="user-avatar"> -->
-          <ScreenFull />
-          <!-- 放置全屏插件 -->
-    <ThemePicker class="right-menu-item" />
+
           <img v-imgerror="defaultImg" :src="staffPhoto" class="user-avatar">
           <span class="name">{{ name }}</span>
           <i class="el-icon-caret-bottom" />
@@ -42,9 +44,11 @@
 import { mapGetters } from 'vuex'
 import Hamburger from '@/components/Hamburger'
 import defaultImg from '@/assets/common/bigUserHeader.png'
+import Lang from '@/lang/index.vue'
 export default {
   components: {
-    Hamburger
+    Hamburger,
+    Lang
   },
   data() {
     return {
@@ -119,19 +123,22 @@ export default {
     float: right;
     height: 100%;
     line-height: 50px;
-
+    // text-align: center;
     &:focus {
       outline: none;
     }
 
     .right-menu-item {
       display: inline-block;
-      padding: 0 8px;
+      // padding: 0 8px;
       height: 100%;
       font-size: 18px;
-      color: #5a5e66;
-      vertical-align: text-bottom;
-
+      color: #f2f3f5;
+      vertical-align: middle;
+      margin-left: 10px;
+      .svg-icon{
+        color: rgb(241, 229, 229);
+      }
       &.hover-effect {
         cursor: pointer;
         transition: background .3s;

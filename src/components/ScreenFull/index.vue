@@ -1,5 +1,5 @@
 <template>
-  <svg-icon icon-class="fullscreen" @click="changeScreen" />
+  <svg-icon icon-class="fullscreen" style="color:#fff; width: 20px; height: 20px" @click="changeScreen" />
 </template>
 
 <script>
@@ -22,9 +22,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 .svg-icon {
-    color:#fff;
+    color:#fff ;
     width: 20px;
     height: 20px;
     margin-right: 30px;

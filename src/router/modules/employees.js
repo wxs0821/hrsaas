@@ -7,8 +7,9 @@ export default {
   children: [
     {
       path: '',
+      name: 'employees',
       component: () => import('@/views/employees'),
-      meta: { title: 'Employees', icon: 'people' }
+      meta: { title: '员工', icon: 'people' }
     },
     {
       path: 'detail/:userId?',

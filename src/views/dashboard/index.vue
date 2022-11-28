@@ -25,7 +25,7 @@
             <span>工作日历</span>
           </div>
           <!-- 放置日历组件 -->
-          <WorkCalendar />
+          <WorkCalender />
         </el-card>
         <!-- 公告 -->
         <el-card class="box-card">
@@ -85,7 +85,7 @@
             <span>绩效指数</span>
           </div>
         <!-- 放置雷达图 -->
-        <!-- <RadarPage/> -->
+        <RadarPage/>
         </el-card>
         <!-- 帮助连接 -->
         <el-card class="box-card">
@@ -122,11 +122,11 @@
 
 <script>
 import { mapGetters } from 'vuex'
-// import RadarPage from './components/RadarPage.vue'
+import RadarPage from './components/radar.vue'
 
 export default {
   name: 'Dashboard',
-  // components: { RadarPage },
+  components: { RadarPage },
   computed: {
     ...mapGetters([
       'name'
